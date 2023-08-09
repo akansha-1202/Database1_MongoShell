@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MongoShell</title>
+    <style>
+      h1 {
+        color: white;
+        text-align: center;
+        border-top: 1px solid white;
+        border-bottom: 1px solid white;
+      }
+      h3 {
+        color: white;
+      }
+      p,
+      pre {
+        color: green;
+        line-height: 20px;
+      }
+      * {
+        padding: 1%;
+        background-color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Queries using Mongo Shell</h1>
+    <h3>
+      Question 1. Create a database , give it name like ""Human_Resource"".
+      Create a collection inside this named ""employee""
+    </h3>
+    <p>
+      C:\Users\akans>mongosh<br /><br />
+      test> use Human_Resource<br /><br />
+    </p>
+
+    <h3>
+      Question 2. Query the collection ""employee"" and list all the documents.
+    </h3>
+    <p>
+      Human_Resource> db.employee.insertMany([{"firstName": "John", "lastName":
+      "Doe","salary": 25000, "lastCompany": "X","lastSalary" : 10000 ,
+      "overallExp": 2,"contactInfo": 1234567890,"yearGrad": 2016,"gradStream":
+      "CSE"},{"firstName": "Rohan", "lastName": "Jame", "salary": 30000,
+      "department": "Technical", "lastCompany": "Y", "lastSalary": 15000,
+      "overallExp": 1, "contactInfo": 1234567860, "yearGrad": 2015,
+      "gradStream": "CSE"}, { "firstName": "Jame", "lastName": "Doe", "salary":
+      35000, "department": "Accounts", "lastCompany": "Z", "lastSalary": 20000,
+      "overallExp": 1, "contactInfo": 123567890, "yearGrad": 2019, "gradStream":
+      "ECE"}, { "firstName": "Sao", "lastName": "Avika", "salary":30000,
+      "department": "Sales", "lastCompany": "Y", "lastSalary": 15000,
+      "overallExp": 2, "contactInfo": 1234567860, "yearGrad": 2015,
+      "gradStream": "CSE"},{ "firstName": "Jame", "lastName": "roh", "salary":
+      35000, "department": "Accounts", "lastCompany": "Z", "lastSalary": 15000,
+      "overallExp": 2, "contactInfo": 123567890, "yearGrad": 2019, "gradStream":
+      "EEE"},{ "firstName": "Rohan", "lastName": "Jame", "salary": "30000",
+      "department": "Technical", "lastCompany": "Y", "lastSalary": "15000",
+      "overallExp": "1", "contactInfo": "1234567860", "yearGrad": "2015",
+      "gradStream": "CSE"},[{"firstName": "Rohan", "lastName": "Jame", "salary":
+      30000, "department": "Technical", "lastCompany": "Y", "lastSalary": 15000,
+      "overallExp": 1, "contactInfo": 1234567860, "yearGrad": 2015,
+      "gradStream": "CSE"},{ "firstName": "Jame", "lastName": "Doe", "salary":
+      35000, "department": "Accounts", "lastCompany": "Z", "lastSalary": 20000,
+      "overallExp": 1, "contactInfo": 123567890, "yearGrad": 2019, "gradStream":
+      "ECE"},{ "firstName": "Sao", "firstName": "Sao", "salary": 30000,
+      "department": "Sales", "lastCompany": "Y", "lastSalary": 15000,
+      "overallExp": 2, "contactInfo": 1234567860, "yearGrad": 2015,
+      "gradStream": "CSE"},{ "firstName": "Jame", "lastName": "Doe", "salary":
+      35000, "department": "Accounts", "lastCompany": "Z", "lastSalary": 15000,
+      "overallExp": 2, "contactInfo": 123567890, "yearGrad": 2019, "gradStream":
+      "EEE"}])
+    </p>
+
+    <h3>
+      Question 3. Query the Collection ""employee"" and list the employees who
+      are having salary more than 30000.
+    </h3>
+
+    <pre>
+Human_Resource> db.employee.find({"salary" : {"$gt" : 30000}})
+[
+  {
+    _id: ObjectId("64d30d6f220df19dd78711c5"),
+    firstName: 'Rohan',
+    lastName: 'Jame',
+    salary: 60000,
+    department: 'Technical',
+    lastCompany: 'Y',
+    lastSalary: 15000,
+    overallExp: 1,
+    contactInfo: 1234567860,
+    yearGrad: 2015,
+    gradStream: 'CSE'
+  },
+  {
+    _id: ObjectId("64d30d6f220df19dd78711c6"),
+    firstName: 'Jame',
+    lastName: 'Doe',
+    salary: 35000,
+    department: 'Accounts',
+    lastCompany: 'Z',
+    lastSalary: 20000,
+    overallExp: 1,
+    contactInfo: 123567890,
+    yearGrad: 2019,
+    gradStream: 'ECE'
+  },
+  {
+    _id: ObjectId("64d30d6f220df19dd78711c8"),
+    firstName: 'Jame',
+    lastName: 'roh',
+    salary: 35000,
+    department: 'Accounts',
+    lastCompany: 'Z',
+    lastSalary: 15000,
+    overallExp: 2,
+    contactInfo: 123567890,
+    yearGrad: 2019,
+    gradStream: 'EEE'
+  },
+  {
+    _id: ObjectId("64d30fdf220df19dd78711cd"),
+    firstName: 'Sarita',
+    lastName: 'Singh',
+    salary: 45000,
+    department: 'Accounts',
+    lastCompany: 'Z',
+    lastSalary: 20000,
+    overallExp: 2,
+    contactInfo: 321567890,
+    yearGrad: 2019,
+    gradStream: 'EEE'
+  },
+  {
+    _id: ObjectId("64d3154fc96414d8823b0412"),
+    firstName: 'Elle',
+    lastName: 'Foe',
+    salary: 55000,
+    lastCompany: 'X',
+    lastSalary: 12000,
+    overallExp: 3,
+    contactInfo: 1234567654,
+    yearGrad: 2015,
+    gradStream: 'CSE'
+  }
+]
+    </pre>
+
+    <h3>
+      Question 4. Query the collection ""employee"" and list the employees who
+      are having experience more than 2 years.
+    </h3>
+
+    <pre>
+        Human_Resource> db.employee.find({"overallExp" : {"$gt" : 2}})
+        [
+          {
+            _id: ObjectId("64d3154fc96414d8823b0412"),
+            firstName: 'Elle',
+            lastName: 'Foe',
+            salary: 55000,
+            lastCompany: 'X',
+            lastSalary: 12000,
+            overallExp: 3,
+            contactInfo: 1234567654,
+            yearGrad: 2015,
+            gradStream: 'CSE'
+          }
+        ]       
+      </pre
+    >
+
+    <h3>
+      Question 5. Query the collection ""employee"" and list the employees who
+      are graduated after 2015 and having experience more than 1 year
+    </h3>
+
+    <pre>
+Human_Resource> db.employee.find({ "yearGrad": {"$gt": 2015}} || {"overallExp" : {"$gt" : 1}})
+[
+  {
+    _id: ObjectId("64d30d6f220df19dd78711c4"),
+    firstName: 'John',
+    lastName: 'Doe',
+    salary: 25000,
+    lastCompany: 'X',
+    lastSalary: 10000,
+    overallExp: 2,
+    contactInfo: 1234567890,
+    yearGrad: 2016,
+    gradStream: 'CSE'
+  },
+  {
+    _id: ObjectId("64d30d6f220df19dd78711c6"),
+    firstName: 'Jame',
+    lastName: 'Doe',
+    salary: 35000,
+    department: 'Accounts',
+    lastCompany: 'Z',
+    lastSalary: 20000,
+    overallExp: 1,
+    contactInfo: 123567890,
+    yearGrad: 2019,
+    gradStream: 'ECE'
+  },
+  {
+    _id: ObjectId("64d30d6f220df19dd78711c8"),
+    firstName: 'Jame',
+    lastName: 'roh',
+    salary: 35000,
+    department: 'Accounts',
+    lastCompany: 'Z',
+    lastSalary: 15000,
+    overallExp: 2,
+    contactInfo: 123567890,
+    yearGrad: 2019,
+    gradStream: 'EEE'
+  },
+  {
+    _id: ObjectId("64d30fdf220df19dd78711cb"),
+    firstName: 'Jame',
+    lastName: 'Doe',
+    salary: 29000,
+    department: 'Accounts',
+    lastCompany: 'Z',
+    lastSalary: 20000,
+    overallExp: 1,
+    contactInfo: 123567890,
+    yearGrad: 2019,
+    gradStream: 'ECE'
+  },
+  {
+    _id: ObjectId("64d30fdf220df19dd78711cd"),
+    firstName: 'Sarita',
+    lastName: 'Singh',
+    salary: 45000,
+    department: 'Accounts',
+    lastCompany: 'Z',
+    lastSalary: 20000,
+    overallExp: 2,
+    contactInfo: 321567890,
+    yearGrad: 2019,
+    gradStream: 'EEE'
+  }
+]
+      </pre
+    >
+
+    <h3>
+      Question 6. Query the collection ""employee"" and update the salary of the
+      employee whose salary is greater than 65000.
+    </h3>
+    <pre>
+Human_Resource> db.employee.find({ "salary": {"$gt": 65000}})
+[
+  {
+    _id: ObjectId("64d30d6f220df19dd78711c8"),
+    firstName: 'Game',
+    lastName: 'roh',
+    salary: 90000,
+    department: 'Accounts',
+    lastCompany: 'Z',
+    lastSalary: 15000,
+    overallExp: 4,
+    contactInfo: 123567890,
+    yearGrad: 2019,
+    gradStream: 'EEE'
+  }
+]
+        </pre
+    >
+
+    <h3>
+      Question 7. Delete all the documents from ""employee"" where last company
+      is Y"
+    </h3>
+    <pre>
+Human_Resource> db.employee.deleteMany({"lastCompany": 'Y'})
+{ acknowledged: true, deletedCount: 3 }
+        </pre
+    >
+<hr>
+  </body>
+</html>
