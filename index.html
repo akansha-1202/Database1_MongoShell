@@ -178,97 +178,47 @@ Human_Resource> db.employee.find({"salary" : {"$gt" : 30000}})
     </h3>
 
     <pre>
-Human_Resource> db.employee.find({ "yearGrad": {"$gt": 2015}} || {"overallExp" : {"$gt" : 1}})
-[
-  {
-    _id: ObjectId("64d30d6f220df19dd78711c4"),
-    firstName: 'John',
-    lastName: 'Doe',
-    salary: 25000,
-    lastCompany: 'X',
-    lastSalary: 10000,
-    overallExp: 2,
-    contactInfo: 1234567890,
-    yearGrad: 2016,
-    gradStream: 'CSE'
-  },
-  {
-    _id: ObjectId("64d30d6f220df19dd78711c6"),
-    firstName: 'Jame',
-    lastName: 'Doe',
-    salary: 35000,
-    department: 'Accounts',
-    lastCompany: 'Z',
-    lastSalary: 20000,
-    overallExp: 1,
-    contactInfo: 123567890,
-    yearGrad: 2019,
-    gradStream: 'ECE'
-  },
-  {
-    _id: ObjectId("64d30d6f220df19dd78711c8"),
-    firstName: 'Jame',
-    lastName: 'roh',
-    salary: 35000,
-    department: 'Accounts',
-    lastCompany: 'Z',
-    lastSalary: 15000,
-    overallExp: 2,
-    contactInfo: 123567890,
-    yearGrad: 2019,
-    gradStream: 'EEE'
-  },
-  {
-    _id: ObjectId("64d30fdf220df19dd78711cb"),
-    firstName: 'Jame',
-    lastName: 'Doe',
-    salary: 29000,
-    department: 'Accounts',
-    lastCompany: 'Z',
-    lastSalary: 20000,
-    overallExp: 1,
-    contactInfo: 123567890,
-    yearGrad: 2019,
-    gradStream: 'ECE'
-  },
-  {
-    _id: ObjectId("64d30fdf220df19dd78711cd"),
-    firstName: 'Sarita',
-    lastName: 'Singh',
-    salary: 45000,
-    department: 'Accounts',
-    lastCompany: 'Z',
-    lastSalary: 20000,
-    overallExp: 2,
-    contactInfo: 321567890,
-    yearGrad: 2019,
-    gradStream: 'EEE'
-  }
-]
-      </pre
-    >
-
-    <h3>
-      Question 6. Query the collection ""employee"" and update the salary of the
-      employee whose salary is greater than 65000.
-    </h3>
-    <pre>
-Human_Resource> db.employee.find({ "salary": {"$gt": 65000}})
-[
-  {
-    _id: ObjectId("64d30d6f220df19dd78711c8"),
-    firstName: 'Game',
-    lastName: 'roh',
-    salary: 90000,
-    department: 'Accounts',
-    lastCompany: 'Z',
-    lastSalary: 15000,
-    overallExp: 4,
-    contactInfo: 123567890,
-    yearGrad: 2019,
-    gradStream: 'EEE'
-  }
-]
+      db.employee.find({"yearGrad":{"$gt":2015},"overallExp":{"$gt":1}})
+      [
+        {
+          _id: ObjectId("64d30d6f220df19dd78711c4"),
+          firstName: 'John',
+          lastName: 'Doe',
+          salary: 25000,
+          lastCompany: 'X',
+          lastSalary: 10000,
+          overallExp: 2,
+          contactInfo: 1234567890,
+          yearGrad: 2016,
+          gradStream: 'CSE'
+        },
+        {
+          _id: ObjectId("64d30d6f220df19dd78711c8"),
+          firstName: 'Game',
+          lastName: 'roh',
+          salary: 90000,
+          department: 'Accounts',
+          lastCompany: 'Z',
+          lastSalary: 15000,
+          overallExp: 4,
+          contactInfo: 123567890,
+          yearGrad: 2019,
+          gradStream: 'EEE'
+        },
+        {
+          _id: ObjectId("64d30fdf220df19dd78711cd"),
+          firstName: 'Sarita',
+          lastName: 'Singh',
+          salary: 45000,
+          department: 'Accounts',
+          lastCompany: 'Z',
+          lastSalary: 20000,
+          overallExp: 2,
+          contactInfo: 321567890,
+          yearGrad: 2019,
+          gradStream: 'EEE'
+        }
+      ]
         </pre
     >
 
@@ -281,6 +231,31 @@ Human_Resource> db.employee.deleteMany({"lastCompany": 'Y'})
 { acknowledged: true, deletedCount: 3 }
         </pre
     >
-<hr>
+
+    <h3>Question 8. How to update one data in a single attempt?</h3>
+    <pre>
+Human_Resource> db.employee.updateOne({"salary":{"$gt":24000}}, {$set : {"salary" : 29000}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+    </pre>
+
+    <h3>Question 8. How to update all data in a single attempt?</h3>
+    <pre>
+Human_Resource> db.employee.updateMany({"salary":{"$gt":30000}}, {$set : {"salary" : 38000}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 5,
+  modifiedCount: 5,
+  upsertedCount: 0
+}
+    </pre>
+
+    <hr />
   </body>
 </html>
